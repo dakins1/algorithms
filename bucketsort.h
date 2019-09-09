@@ -21,7 +21,7 @@ void bucketSort(T begin, T end, K keyFunc) {
     }
 
     for(auto b : buckets) {
-        std::sort(b.begin(), b.end());
+        std::sort(b.begin(), b.end(), [&keyFunc](D d1, D d2){keyFunc(d1) > keyFunc(d2));
     }
 
     vector<D> sorted;
