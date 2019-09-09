@@ -13,30 +13,29 @@ double newTime(double minSplit, double maxSplit) {
 
 int numCells(double endTime, double minSplit, double maxSplit) {
 
-    //NOTES: you start out with one cell and splits instantly. This automatically creates 2 more cells.
-    //It's possible, though, that one of these goes beyond endTime, so you'll need to account for that
-    //in the intial time creations. 
-	//Another note, you might end up inserting more elements than popping, therefore unordered queue might be best :o
-	//ANOTHER note, what happens if a cell creates a time that is before it's current time?
-	//Also, don't confuse one cell creating two more cells, thus totalling in 3 cells.
-	//	What happens is one cell becomes 2 cells
-
     int cellCount = 1;
     std::priority_queue<double, std::vector<double>, std::greater<double> > schedule;
-    schedule.push(newTime(minSplit, maxSplit));
-    schedule.push(newTime(minSplit, maxSplit));
 
-    while (schedule.top() <= endTime) {
+    cellCount++;
+    double n1 = newTime(minSplit, maxSplit);
+    double n2 = newTime(minSplit, maxSplit);
+    schedule.push(n1);
+    schedule.push(n2);
+
+    while (schedule.top() <= endTime) { 
         cellCount++;
-		minSplit = schedule.top();
-		schedule.push(newTime(minSplit, maxSplit));
-		schedule.push(newTime(minSplit, maxSplit));
+        n1 = newTime(minSplit, maxSplit) + schedule.top();
+        n2 = newTime(minSplit, maxSplit) + schedule.top();
 		schedule.pop();
+		if (n1 <= endTime) schedule.push(n1);
+		if (n2 <= endTime) schedule.push(n2);
     }
 	return cellCount;
-
 }
 
+/*
 int main() {
-	cout << numCells(1000.0, 1, 1100) << endl;
+    cout << numCells(3, 1, 1) << endl;
 }
+*/
+
