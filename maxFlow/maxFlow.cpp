@@ -1,4 +1,5 @@
 #include <vector>
+#include <tuple>
 #include <iostream>
 using namespace std;
 
@@ -8,7 +9,7 @@ vector<tuple<int,int,int>> courierLoads(
 {
 	for (auto x : orders) { cout << x << ", "; }
 	cout << endl;
-	for (auto x : capacities) { cout << x << ", "; }
+	for (auto x : capacities) { cout << "(" << get<0>(x)<<", "<<get<1>(x)<<", "<<get<2>(x)<<")" << endl; }
 	cout << endl;
 	
 }
