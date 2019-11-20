@@ -4,8 +4,6 @@
 
 using namespace std;
 
-
-
 vector<vector<double>> buildTable(int weightLimit, const vector<int>& weights, const vector<double>& values) {
 
 	vector<vector<double>> cache (values.size()+1, vector<double>(weightLimit+1, 0)); 

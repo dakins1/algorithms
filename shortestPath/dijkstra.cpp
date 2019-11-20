@@ -8,7 +8,6 @@
 
 using namespace std;
 
-//This isn't quadratic, but does get called for every node...., pretty disgusting
 int getDistance(const vector<vector<tuple<int, int>>> &adjs, int u, int v) {
    auto tups = adjs[u];
    vector<int> connections(tups.size());
@@ -36,11 +35,6 @@ void relax(vector<int>& dists, vector<int>& parents, int u, int v,const vector<v
 
 
 }
-
-//Dr. Jiang kind of does the relaxing in line with the rest of the code
-//Because he has a list of all the nearby nodes, he doesn't have to do a get distance function
-//cuz he just goes through each node in nearby distances, for auto m : nearbyDistances, thus he doesn't
-//have to pass anything to any function
 
 bool comp(tuple<int,int> u, tuple<int,int> v) { return get<1>(u) > get<1>(v); }
 
